@@ -1,8 +1,9 @@
 import csv
 import time
 from concurrent.futures import ProcessPoolExecutor, as_completed
-from process_row import process_row
+
 import config
+from process_row import process_row
 
 
 # Função para processar um chunk do CSV
