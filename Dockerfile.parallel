@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y binutils
 COPY . .
 
 RUN pip install --no-cache-dir -r requirements.txt
-RUN python -m PyInstaller --onefile lib/parallel.py
+RUN python -m PyInstaller --onefile lib/parallel_threads.py
 COPY ./sleep_data_large.csv /dist/sleep_data_large.csv
 
 FROM scratch
@@ -18,4 +18,4 @@ WORKDIR /app
 
 COPY --from=builder /dist .
 
-ENTRYPOINT [ "./dist/parallel" ]
+ENTRYPOINT [ "/dist/parallel" ]
