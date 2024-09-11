@@ -1,6 +1,7 @@
 import csv
 import time
 from concurrent.futures import ProcessPoolExecutor, as_completed
+from utils.get_system_info import get_system_info
 
 import config
 from process_row import process_row
@@ -40,6 +41,8 @@ def process_csv_parallel(file_name: str, chunk_size: int = 150000):
 
 
 if __name__ == "__main__":
+    get_system_info()
+
     start_time = time.time()
     result = process_csv_parallel(config.sleep_data_file)
     elapsed_time = time.time() - start_time

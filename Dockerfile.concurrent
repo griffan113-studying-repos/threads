@@ -11,7 +11,7 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Build the PyInstaller binary
-RUN python -m PyInstaller --onefile lib/parallel_threads.py
+RUN python -m PyInstaller --onefile lib/concurrent_threads.py
 
 # Final image stage (using a minimal base image)
 FROM python:3.12-slim
@@ -19,8 +19,8 @@ FROM python:3.12-slim
 WORKDIR /app
 
 # Copy the binary and CSV file from the builder stage
-COPY --from=builder /app/dist/parallel_threads /app/parallel
+COPY --from=builder /app/dist/concurrent_threads /app/concurrent
 COPY --from=builder /app/sleep_data_large.csv /app/sleep_data_large.csv
 
 # Set the entry point to the binary
-ENTRYPOINT [ "/app/parallel" ]
+ENTRYPOINT [ "/app/concurrent" ]

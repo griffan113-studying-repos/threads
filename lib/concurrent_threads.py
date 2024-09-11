@@ -1,5 +1,6 @@
 import csv
 import time
+from utils.get_system_info import get_system_info
 
 import config
 from process_row import process_row
@@ -17,6 +18,8 @@ def process_csv(file_name: str):
 
 
 if __name__ == "__main__":
+    get_system_info()
+
     start_time = time.time()
     result = process_csv(config.sleep_data_file)
     elapsed_time = time.time() - start_time
